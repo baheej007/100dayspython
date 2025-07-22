@@ -1,13 +1,53 @@
-from quizmodel import model
-from quizdata import question_data
-from quizbrain import brain
+from turtle import Turtle,Screen
+from traffcarmanager import CarManager
+from traffplayer import Player
+from traffscoreboard import Scoreboard
+import time
 
-question_bank=[]
-for question in question_data:
-    question_text=question["text"]
-    question_answer=question["answer"]
-    new_question=model(question_text,question_answer)
-    question_bank.append(new_question)
+screen = Screen()
+screen.setup(width=600, height=600)
+screen.tracer(0)
 
-quiz=brain(question_bank)
-quiz.next_question()
+t=Player()
+screen.listen()
+screen.onkey(t.up,"Up")
+screen.onkey(t.down,"Down")
+
+
+
+
+
+game_is_on = True
+while game_is_on:
+    time.sleep(0.1)
+    screen.update()
+    car = CarManager()
+    car.move()
+
+    if t.distance(car)<4:
+        game_is_on=False
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+screen.exitonclick()
