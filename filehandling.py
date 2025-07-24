@@ -1,0 +1,9 @@
+with open("file.txt") as file:
+    content = file.read()
+with open("file.txt","w") as file:
+    file.write('''Hello, iam Mohammed baheej.T.P.
+                  Iam 35 years old.
+                  Iam from Kerala
+                  Iam a Btech student in Electronic and communication from KTU University.
+                  I want to become a Python-django developer.
+                  Thank you.''')

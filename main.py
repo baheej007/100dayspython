@@ -1,53 +1,16 @@
-from turtle import Turtle,Screen
-from traffcarmanager import CarManager
-from traffplayer import Player
-from traffscoreboard import Scoreboard
-import time
+import csv
+# with open ("weather_data.csv","r") as f:
+#     data= csv.reader(f)
+#     temp=[]
+#     for row in data:
+#         if row[1]!="temp":
+#          temp.append(int(row[1]))
+#         print(row)
+#     print(temp)
 
-screen = Screen()
-screen.setup(width=600, height=600)
-screen.tracer(0)
-
-t=Player()
-screen.listen()
-screen.onkey(t.up,"Up")
-screen.onkey(t.down,"Down")
-
-
-
-
-
-game_is_on = True
-while game_is_on:
-    time.sleep(0.1)
-    screen.update()
-    car = CarManager()
-    car.move()
-
-    if t.distance(car)<4:
-        game_is_on=False
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-screen.exitonclick()
+import pandas as pd
+data=pd.read_csv("weather_data.csv")
+# print(data["temp"])
+datadict=data.to_dict()
+print(datadict)
+print(datadict["day"][0])
