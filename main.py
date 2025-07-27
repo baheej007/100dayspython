@@ -1,39 +1,52 @@
-import csv
-# with open ("weather_data.csv","r") as f:
-#     data= csv.reader(f)
-#     temp=[]
-#     for row in data:
-#         if row[1]!="temp":
-#          temp.append(int(row[1]))
-#         print(row)
-#     print(temp)
-
+import turtle
 import pandas as pd
-data=pd.read_csv("wedata.csv")
-print(data)
-# print(data["temp"])
-datadict=data.to_dict()
-print(datadict)
-# tl=[]
-# # print(datadict)
-# for i in range(7):
-#   tl.append(datadict["temp"][i])
-# avg=round(sum(tl)/len(tl),2)
-# avgm=round(data['temp'].mean(),2)
-# print(f"\naverage temprature of this week : {avg}")
-# print(f"\naverage temprature of this week : {avgm}\n")
-# print(data["temp"].max())
-# print(data.condition)
-mon=data[data.day=="Monday"]
-print(mon.temp)
-dict={
-    "name":["ali","riya","bju"],
-    "age":[25,21,26]
-}
-df=pd.DataFrame(dict)
-df.to_csv("dfdict.csv")
-print(df)
+screen=turtle.Screen()
+screen.title("US STATE GAME")
+screen.bgpic("blank_states_img.gif")
+
+# def click_coord(x,y):                  "use to find coordinates where we click on the screen"
+#     print(x,y)
+#
+# turtle.onscreenclick(click_coord)
+# turtle.mainloop()
+states=pd.read_csv("50_states.csv")
+
+l=[]
+play=True
+while play:
+    inp=(screen.textinput("ENTER A STATE: ","ENTER: ")).title()
+    for i in states.state:
+        if inp==i:
+            l.append(i)
+            print(l)
+            if len(list(set(l)))==2:
+                play = False
+                screen.bgpic("y.gif")
+
+            else:
+                turtle.penup()
+                turtle.hideturtle()
+                forx = states[states.state == inp]
+                x=int(forx.x)
+                fory = states[states.state == inp]
+                y=int(fory.y)
+                turtle.goto(x-3,y)
+                turtle.write(inp)
+            play=True
+        else:
+
+            Play=True
 
 
 
+
+
+
+
+
+
+
+
+
+screen.exitonclick()
 
